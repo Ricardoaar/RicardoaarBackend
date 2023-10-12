@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Experience {
+  """Experience"""
+  company: String!
+
+  """Title"""
+  title: String!
+
+  """Description"""
+  description: String!
+
+  """End Date"""
+  endDate: Int!
+
+  """StartDate"""
+  startDate: Int!
+
+  """UpdatedAt"""
+  updatedAt: Int!
+
+  """CreatedAt"""
+  createdAt: Int!
+}
+
+type Query {
+  experiences: [Experience!]!
+  experience(id: Int!): Experience!
+}
+
+type Mutation {
+  createExperience(createExperienceInput: CreateExperienceInput!): Experience!
+  updateExperience(updateExperienceInput: UpdateExperienceInput!): Experience!
+  removeExperience(id: Int!): Experience!
+}
+
+input CreateExperienceInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateExperienceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

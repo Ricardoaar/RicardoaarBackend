@@ -13,16 +13,15 @@ export class Experience implements IExperience {
   @Field(() => String, { description: 'Description' })
   description: string;
 
-  @Field(() => Int, { description: 'End Date' })
+  @Field(() => Date, { description: 'End Date' })
   endDate: Date;
 
-  @Field(() => Int, { description: 'StartDate' })
+  @Field(() => Date, { description: 'StartDate' })
   startDate: Date;
 
-
-  @Field(() => Int, { description: 'UpdatedAt' })
+  @Field(() => Date, { description: 'UpdatedAt' })
   updatedAt: Date;
-  @Field(() => Int, { description: 'CreatedAt' })
+  @Field(() => Date, { description: 'CreatedAt' })
   createdAt: Date;
 
 }

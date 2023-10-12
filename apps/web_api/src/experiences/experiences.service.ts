@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateExperienceInput } from './dto/create-experience.input';
 import { UpdateExperienceInput } from './dto/update-experience.input';
+import { InjectModel } from '@nestjs/mongoose';
+import { Experience } from '@/web_api/src/experiences/entities/experience.model';
+import { Model } from 'mongoose';
+import { MODELS } from '@/web_api/src/experiences/models.contants';
 
 @Injectable()
 export class ExperiencesService {
+
+  constructor(@InjectModel(Experience.name) private experience: Model<Experience>) {
+
+  }
+
   create(createExperienceInput: CreateExperienceInput) {
-    return 'This action adds a new experience';
+    return this.experience.create(createExperienceInput);
   }
 
   findAll() {
-    return [];
+    return this.experience.find({});
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} experience`;
+    return this.experience.findById(id);
   }
 
   update(id: number, updateExperienceInput: UpdateExperienceInput) {
-    return `This action updates a #${id} experience`;
+    return this.experience.findByIdAndUpdate(id, updateExperienceInput);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} experience`;
+    return this.experience.findByIdAndDelete(id);
   }
 }

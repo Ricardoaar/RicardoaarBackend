@@ -3,19 +3,36 @@ import { IExperience } from '@/web_api/src/experiences/entities/types';
 
 @Schema()
 export class Experience implements IExperience {
-  @Prop()
+  @Prop({
+    required: true,
+  })
   company: string;
-  @Prop()
-  createdAt: Date;
-  @Prop()
+
+  @Prop({
+    required: true,
+  })
   description: string;
-  @Prop()
+  @Prop({
+    required: true,
+  })
   endDate: Date;
-  @Prop()
+  @Prop({
+    required: true,
+  })
   startDate: Date;
-  @Prop()
+  @Prop({
+    required: true,
+  })
   title: string;
-  @Prop()
+
+  @Prop({
+    default: Date.now,
+  })
+  createdAt: Date;
+
+  @Prop({
+    default: Date.now,
+  })
   updatedAt: Date;
 
 }

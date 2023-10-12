@@ -13,17 +13,22 @@ type Experience {
   description: String!
 
   """End Date"""
-  endDate: Int!
+  endDate: DateTime!
 
   """StartDate"""
-  startDate: Int!
+  startDate: DateTime!
 
   """UpdatedAt"""
-  updatedAt: Int!
+  updatedAt: DateTime!
 
   """CreatedAt"""
-  createdAt: Int!
+  createdAt: DateTime!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Query {
   experiences: [Experience!]!
@@ -37,12 +42,36 @@ type Mutation {
 }
 
 input CreateExperienceInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Company name"""
+  company: String!
+
+  """Description of the experience"""
+  description: String!
+
+  """Date of end"""
+  endDate: DateTime!
+
+  """Date of start"""
+  startDate: DateTime!
+
+  """Title of the experience"""
+  title: String!
 }
 
 input UpdateExperienceInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """Company name"""
+  company: String
+
+  """Description of the experience"""
+  description: String
+
+  """Date of end"""
+  endDate: DateTime
+
+  """Date of start"""
+  startDate: DateTime
+
+  """Title of the experience"""
+  title: String
   id: Int!
 }

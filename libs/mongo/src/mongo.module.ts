@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MongoService } from './mongo.service';
 import { ConfigType } from '@nestjs/config';
 import { ConfigModule } from '@app/config';
 import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
 import mongoConfig from '@app/config/configs/mongo.config';
+import { MongoClient } from 'mongodb';
 
 @Module({
   imports: [ConfigModule, MongooseModule.forRootAsync({
@@ -18,6 +18,22 @@ import mongoConfig from '@app/config/configs/mongo.config';
       });
     },
   })],
+  providers: [{
+    provide: 'DATABASE_CONNECTION',
+    useFactory: async (envConfig: ConfigType<typeof mongoConfig>) => {
+      const { URI, DB_NAME } = envConfig;
+      const client = new MongoClient(URI, {});
+      const connection = await client.connect();
+      return connection.db(DB_NAME);
+    },
+    inject: [mongoConfig.KEY],
+  },
+  ],
+  exports: [
+    'DATABASE_CONNECTION',
+    MongooseModule,
+  ],
+
 
 })
 export class MongoModule {

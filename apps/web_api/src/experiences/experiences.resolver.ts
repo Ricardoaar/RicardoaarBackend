@@ -6,7 +6,8 @@ import { UpdateExperienceInput } from './dto/update-experience.input';
 
 @Resolver(() => Experience)
 export class ExperiencesResolver {
-  constructor(private readonly experiencesService: ExperiencesService) {}
+  constructor(private readonly experiencesService: ExperiencesService) {
+  }
 
   @Mutation(() => Experience)
   createExperience(@Args('createExperienceInput') createExperienceInput: CreateExperienceInput) {

@@ -33,6 +33,12 @@
       ],
       "@app/mongo/*": [
         "libs/mongo/src/*"
+      ],
+      "@app/repository": [
+        "libs/repository/src"
+      ],
+      "@app/repository/*": [
+        "libs/repository/src/*"
       ]
     }
   }

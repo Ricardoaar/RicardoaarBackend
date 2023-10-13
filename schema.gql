@@ -39,6 +39,7 @@ type Skill {
   fallbackIconUrl: String
   updatedAt: DateTime!
   createdAt: DateTime!
+  experiences: [Experience!]
 }
 
 type Query {
@@ -95,10 +96,12 @@ input UpdateExperienceInput {
 input CreateSkillInput {
   name: String!
   fallbackIconUrl: String
+  experiences: [String!]
 }
 
 input UpdateSkillInput {
   name: String
   fallbackIconUrl: String
+  experiences: [String!]
   id: String!
 }

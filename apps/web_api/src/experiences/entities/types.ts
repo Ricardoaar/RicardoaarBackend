@@ -1,5 +1,3 @@
-import { ObjectId } from 'mongodb';
-
 export interface IExperience {
   _id: String;
   title: string;

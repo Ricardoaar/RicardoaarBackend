@@ -4,10 +4,11 @@ import { UpdateSkillInput } from './dto/update-skill.input';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Skill } from '@/web_api/src/skills/entities/skill.model';
+import { MODELS } from '@/web_api/src/experiences/models.contants';
 
 @Injectable()
 export class SkillsService {
-  constructor(@InjectModel(Skill.name) private skills: Model<Skill>) {
+  constructor(@InjectModel(MODELS.SKILLS) private skills: Model<Skill>) {
   }
 
   create(createSkillInput: CreateSkillInput) {
@@ -15,7 +16,7 @@ export class SkillsService {
   }
 
   findAll() {
-    return this.skills.find();
+    return this.skills.find().populate(MODELS.EXPERIENCES);
   }
 
   findOne(id: number) {
@@ -23,7 +24,8 @@ export class SkillsService {
   }
 
   update(id: string, updateSkillInput: UpdateSkillInput) {
-    return this.skills.findByIdAndUpdate(id, { ...updateSkillInput, updated_at: new Date() });
+    const data = this.skills.findByIdAndUpdate(id, updateSkillInput);
+    return data.populate(MODELS.EXPERIENCES);
   }
 
   remove(id: number) {

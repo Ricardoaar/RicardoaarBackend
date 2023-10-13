@@ -10,7 +10,7 @@ import { Mongoose } from 'mongoose';
 
 @Module({
   imports: [MongoModule, MongooseModule.forFeature([{
-    name: Experience.name,
+    name: MODELS.EXPERIENCES,
 
     schema: ExperienceSchema,
   }])],

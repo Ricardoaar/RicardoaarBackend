@@ -1,6 +1,7 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { ISkill } from '@/web_api/src/skills/entities/types';
-import { IEntity } from '@/types';
+import { Experience } from '@/web_api/src/experiences/entities/experience.entity';
+import { Types } from 'mongoose';
 
 @ObjectType()
 export class Skill implements ISkill {
@@ -18,4 +19,8 @@ export class Skill implements ISkill {
 
   @Field(() => Date, { nullable: false })
   createdAt: Date;
+
+  @Field(() => [Experience], { nullable: true })
+  experiences: Types.ObjectId[];
+
 }

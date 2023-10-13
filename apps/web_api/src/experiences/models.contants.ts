@@ -1,3 +1,4 @@
 export const MODELS = {
-  EXPERIENCE: 'Experiences',
+  EXPERIENCES: 'experiences',
+  SKILLS: 'skills',
 };

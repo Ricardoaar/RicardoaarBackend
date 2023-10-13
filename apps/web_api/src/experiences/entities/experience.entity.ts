@@ -1,7 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { IExperience } from '@/web_api/src/experiences/entities/types';
-import { ObjectId } from 'mongodb';
-import { ObjectIdScalar } from '@/types';
 
 
 @ObjectType()

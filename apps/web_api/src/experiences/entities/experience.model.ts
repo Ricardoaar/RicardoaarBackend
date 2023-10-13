@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IExperience } from '@/web_api/src/experiences/entities/types';
+import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { ISkill } from '@/web_api/src/skills/entities/types';
 
 
 @Schema()
@@ -36,6 +38,11 @@ export class Experience implements Omit<IExperience, '_id'> {
   })
   updatedAt: Date;
 
+  @Prop({
+    required: false,
+    ref: MODELS.SKILLS,
+  })
+  skills: ISkill[];
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);

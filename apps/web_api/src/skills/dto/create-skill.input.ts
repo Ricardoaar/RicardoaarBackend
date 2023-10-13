@@ -9,4 +9,7 @@ export class CreateSkillInput implements ISkill {
 
   @Field(() => String, { nullable: true })
   fallbackIconUrl: string;
+
+  @Field(() => [String], { nullable: true })
+  experiences: string[];
 }

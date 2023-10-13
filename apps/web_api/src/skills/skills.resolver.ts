@@ -3,6 +3,8 @@ import { SkillsService } from './skills.service';
 import { Skill } from './entities/skill.entity';
 import { CreateSkillInput } from './dto/create-skill.input';
 import { UpdateSkillInput } from './dto/update-skill.input';
+import { Types } from 'mongoose';
+import { MODELS } from '@/web_api/src/experiences/models.contants';
 
 @Resolver(() => Skill)
 export class SkillsResolver {
@@ -20,15 +22,15 @@ export class SkillsResolver {
   }
 
   @Query(() => Skill, { name: 'skill' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.skillsService.findOne(id);
+  findOne(@Args('id', { type: () => String }) id: Types.ObjectId) {
+    return this.skillsService.findOne(id).populate(MODELS.EXPERIENCES);
   }
 
   @Mutation(() => Skill)
   updateSkill(@Args('updateSkillInput') updateSkillInput: UpdateSkillInput) {
     return this.skillsService.update(updateSkillInput.id, {
       ...updateSkillInput,
-    });
+    }).populate(MODELS.EXPERIENCES);
   }
 
   @Mutation(() => Skill)

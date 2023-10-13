@@ -3,6 +3,8 @@ import { ExperiencesService } from './experiences.service';
 import { Experience } from './entities/experience.entity';
 import { CreateExperienceInput } from './dto/create-experience.input';
 import { UpdateExperienceInput } from './dto/update-experience.input';
+import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { Types } from 'mongoose';
 
 @Resolver(() => Experience)
 export class ExperiencesResolver {
@@ -20,13 +22,13 @@ export class ExperiencesResolver {
   }
 
   @Query(() => Experience, { name: 'experience' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.experiencesService.findOne(id);
   }
 
   @Mutation(() => Experience)
   updateExperience(@Args('updateExperienceInput') updateExperienceInput: UpdateExperienceInput) {
-    return this.experiencesService.update(updateExperienceInput.id, updateExperienceInput);
+    return this.experiencesService.update(updateExperienceInput._id, updateExperienceInput);
   }
 
   @Mutation(() => Experience)

@@ -21,8 +21,8 @@ export class ExperiencesService {
     return this.experience.find({});
   }
 
-  findOne(id: number) {
-    return this.experience.findById(id);
+  findOne(id: Types.ObjectId) {
+    return this.experience.findById(id).populate(MODELS.SKILLS);
   }
 
   update(id: Types.ObjectId, updateExperienceInput: UpdateExperienceInput) {

@@ -1,12 +1,14 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { IExperience } from '@/web_api/src/experiences/entities/types';
+import { Types } from 'mongoose';
+import { Skill } from '@/web_api/src/skills/entities/skill.entity';
 
 
 @ObjectType()
 export class Experience implements IExperience {
 
   @Field(() => String, { description: 'Unique identifier in the database' })
-  _id: String;
+  _id: string;
 
   @Field(() => String, { description: 'Experience' })
   company: string;
@@ -34,5 +36,8 @@ export class Experience implements IExperience {
     nullable: false,
   })
   updatedAt: Date;
+
+  @Field(() => [Skill], { nullable: true })
+  skills: Types.ObjectId[];
 
 }

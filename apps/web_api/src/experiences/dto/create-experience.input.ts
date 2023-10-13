@@ -1,10 +1,10 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
 import { IExperience } from '@/web_api/src/experiences/entities/types';
-import { IModel } from '@/types/model.types';
+import { IEntity } from '@/types/model.types';
 
 
 @InputType()
-export class CreateExperienceInput extends IModel implements IExperience {
+export class CreateExperienceInput implements Omit<IExperience, '_id'> {
 
   @Field(() => String, {
     description: 'Company name',

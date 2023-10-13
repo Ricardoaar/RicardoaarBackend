@@ -8,6 +8,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import {
   ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageLocalDefault,
 } from 'apollo-server-core';
+import { SkillsModule } from './skills/skills.module';
 
 
 @Module({
@@ -20,7 +21,7 @@ import {
         'access-control-allow-methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
       },
     })],
-  })],
+  }), SkillsModule],
   controllers: [AppController],
   providers: [AppService],
 })

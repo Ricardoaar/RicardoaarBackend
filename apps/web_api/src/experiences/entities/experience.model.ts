@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IExperience } from '@/web_api/src/experiences/entities/types';
 
+
 @Schema()
-export class Experience implements IExperience {
+export class Experience implements Omit<IExperience, '_id'> {
   @Prop({
     required: true,
   })
@@ -38,3 +39,6 @@ export class Experience implements IExperience {
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);
+ExperienceSchema.index({
+  title: 1,
+});

@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Experience } from '@/web_api/src/experiences/entities/experience.model';
 import { Model } from 'mongoose';
 import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ExperiencesService {
@@ -25,7 +26,7 @@ export class ExperiencesService {
     return this.experience.findById(id);
   }
 
-  update(id: number, updateExperienceInput: UpdateExperienceInput) {
+  update(id: ObjectId, updateExperienceInput: UpdateExperienceInput) {
     return this.experience.findByIdAndUpdate(id, updateExperienceInput);
   }
 

@@ -2,20 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Skill {
-  _id: String!
-  name: String!
-  fallbackIconUrl: String
-  updatedAt: DateTime!
-  createdAt: DateTime!
-  experiences: [Experience!]
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Experience {
   """Unique identifier in the database"""
   _id: String!
@@ -43,20 +29,48 @@ type Experience {
   skills: [Skill!]
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Skill {
+  _id: String!
+  name: String!
+  fallbackIconUrl: String
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  experiences: [Experience!]
+}
+
 type Query {
-  experiences: [Experience!]!
-  experience(id: String!): Experience!
   skills: [Skill!]!
   skill(id: String!): Skill!
+  experiences: [Experience!]!
+  experience(id: String!): Experience!
 }
 
 type Mutation {
-  createExperience(createExperienceInput: CreateExperienceInput!): Experience!
-  updateExperience(updateExperienceInput: UpdateExperienceInput!): Experience!
-  removeExperience(id: Int!): Experience!
   createSkill(createSkillInput: CreateSkillInput!): Skill!
   updateSkill(updateSkillInput: UpdateSkillInput!): Skill!
   removeSkill(id: Int!): Skill!
+  createExperience(createExperienceInput: CreateExperienceInput!): Experience!
+  updateExperience(updateExperienceInput: UpdateExperienceInput!): Experience!
+  removeExperience(id: Int!): Experience!
+  addSkill(addSkillInput: AddSkillInput!): Experience!
+}
+
+input CreateSkillInput {
+  name: String!
+  fallbackIconUrl: String
+  experiences: [String!]
+}
+
+input UpdateSkillInput {
+  name: String
+  fallbackIconUrl: String
+  experiences: [String!]
+  id: String!
 }
 
 input CreateExperienceInput {
@@ -74,6 +88,7 @@ input CreateExperienceInput {
 
   """Title of the experience"""
   title: String!
+  skills: [String!]
 }
 
 input UpdateExperienceInput {
@@ -91,18 +106,14 @@ input UpdateExperienceInput {
 
   """Title of the experience"""
   title: String
+  skills: [String!]
   _id: String!
 }
 
-input CreateSkillInput {
-  name: String!
-  fallbackIconUrl: String
-  experiences: [String!]
-}
+input AddSkillInput {
+  """Experience ID"""
+  experienceId: String!
 
-input UpdateSkillInput {
-  name: String
-  fallbackIconUrl: String
-  experiences: [String!]
-  id: String!
+  """Skill ID"""
+  skillId: String!
 }

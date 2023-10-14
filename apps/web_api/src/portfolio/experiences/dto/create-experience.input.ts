@@ -1,5 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { IExperience } from '@/web_api/src/experiences/entities/types';
+import { IExperience } from '@/web_api/src/portfolio/experiences/entities/types';
 import { IEntity } from '@/types/model.types';
 
 
@@ -27,5 +27,9 @@ export class CreateExperienceInput implements Omit<IExperience, '_id'> {
     description: 'Title of the experience',
   })
   title: string;
+
+  @Field(() => [String], { nullable: true })
+  skills?: string[];
+
 }
 

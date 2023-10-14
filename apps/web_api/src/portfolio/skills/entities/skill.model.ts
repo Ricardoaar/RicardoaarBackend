@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ISkill } from '@/web_api/src/skills/entities/types';
+import { ISkill } from '@/web_api/src/portfolio/skills/entities/types';
 import { Types } from 'mongoose';
-import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { MODELS } from '@/web_api/src/portfolio/models.contants';
 
 @Schema()
 export class Skill implements ISkill {

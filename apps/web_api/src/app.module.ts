@@ -2,26 +2,19 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@app/config/config.module';
-import { ExperiencesModule } from './experiences/experiences.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
-import {
-  ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageLocalDefault,
-} from 'apollo-server-core';
-import { SkillsModule } from './skills/skills.module';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 
 @Module({
-  imports: [ConfigModule, ExperiencesModule, GraphQLModule.forRoot({
+  imports: [ConfigModule, GraphQLModule.forRoot({
     driver: ApolloDriver,
     autoSchemaFile: 'schema.gql',
     playground: false,
-    plugins: [ApolloServerPluginLandingPageLocalDefault({
-      headers: {
-        'access-control-allow-methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      },
-    })],
-  }), SkillsModule],
+    plugins: [ApolloServerPluginLandingPageLocalDefault({})],
+  }), PortfolioModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -3,8 +3,8 @@ import { CreateSkillInput } from './dto/create-skill.input';
 import { UpdateSkillInput } from './dto/update-skill.input';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Skill } from '@/web_api/src/skills/entities/skill.model';
-import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { Skill } from '@/web_api/src/portfolio/skills/entities/skill.model';
+import { MODELS } from '@/web_api/src/portfolio/models.contants';
 
 @Injectable()
 export class SkillsService {

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IExperience } from '@/web_api/src/experiences/entities/types';
-import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { IExperience } from '@/web_api/src/portfolio/experiences/entities/types';
+import { MODELS } from '@/web_api/src/portfolio/models.contants';
 import { Types } from 'mongoose';
 
 
@@ -37,12 +37,6 @@ export class Experience implements Omit<IExperience, '_id'> {
     default: Date.now,
   })
   updatedAt: Date;
-
-  @Prop({
-    required: false,
-    ref: MODELS.SKILLS,
-  })
-  skills: Types.ObjectId[];
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);

@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { ISkill } from '@/web_api/src/skills/entities/types';
+import { ISkill } from '@/web_api/src/portfolio/skills/entities/types';
 
 
 @InputType()

@@ -4,7 +4,7 @@ import { Skill } from './entities/skill.entity';
 import { CreateSkillInput } from './dto/create-skill.input';
 import { UpdateSkillInput } from './dto/update-skill.input';
 import { Types } from 'mongoose';
-import { MODELS } from '@/web_api/src/experiences/models.contants';
+import { MODELS } from '@/web_api/src/portfolio/models.contants';
 
 @Resolver(() => Skill)
 export class SkillsResolver {
@@ -18,7 +18,7 @@ export class SkillsResolver {
 
   @Query(() => [Skill], { name: 'skills' })
   findAll() {
-    return this.skillsService.findAll();
+    return this.skillsService.findAll().populate(MODELS.EXPERIENCES);
   }
 
   @Query(() => Skill, { name: 'skill' })

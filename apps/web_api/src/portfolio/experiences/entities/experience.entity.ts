@@ -1,7 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { IExperience } from '@/web_api/src/experiences/entities/types';
+import { IExperience } from '@/web_api/src/portfolio/experiences/entities/types';
 import { Types } from 'mongoose';
-import { Skill } from '@/web_api/src/skills/entities/skill.entity';
+import { Skill } from '@/web_api/src/portfolio/skills/entities/skill.entity';
 
 
 @ObjectType()

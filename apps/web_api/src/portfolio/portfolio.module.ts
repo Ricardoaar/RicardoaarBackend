@@ -8,6 +8,9 @@ import { SkillsResolver } from '@/web_api/src/portfolio/skills/skills.resolver';
 import { SkillsService } from '@/web_api/src/portfolio/skills/skills.service';
 import { ExperiencesResolver } from '@/web_api/src/portfolio/experiences/experiences.resolver';
 import { ExperiencesService } from '@/web_api/src/portfolio/experiences/experiences.service';
+import { ProjectSchema } from '@/web_api/src/portfolio/projects/entities/project.model';
+import { ProjectsService } from '@/web_api/src/portfolio/projects/projects.service';
+import { ProjectsResolver } from '@/web_api/src/portfolio/projects/projects.resolver';
 
 @Module({
   imports: [MongoModule, MongooseModule.forFeature([{
@@ -16,9 +19,16 @@ import { ExperiencesService } from '@/web_api/src/portfolio/experiences/experien
   }, {
     name: MODELS.EXPERIENCES,
     schema: ExperienceSchema,
-  }])],
-
-  providers: [SkillsResolver, SkillsService, ExperiencesResolver, ExperiencesService],
+  },
+    {
+      name: MODELS.PROJECTS,
+      schema: ProjectSchema,
+    }])],
+  providers: [
+    SkillsResolver, SkillsService,
+    ExperiencesResolver, ExperiencesService,
+    ProjectsService, ProjectsResolver,
+  ],
 })
 export class PortfolioModule {
 }

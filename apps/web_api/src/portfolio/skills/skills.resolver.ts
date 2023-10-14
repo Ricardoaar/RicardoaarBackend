@@ -18,7 +18,7 @@ export class SkillsResolver {
 
   @Query(() => [Skill], { name: 'skills' })
   findAll() {
-    return this.skillsService.findAll().populate(MODELS.EXPERIENCES);
+    return this.skillsService.findAll();
   }
 
   @Query(() => Skill, { name: 'skill' })

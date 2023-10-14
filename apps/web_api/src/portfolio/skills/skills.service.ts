@@ -16,16 +16,16 @@ export class SkillsService {
   }
 
   findAll() {
-    return this.skills.find();
+    return this.skills.find().populate(MODELS.EXPERIENCES).populate(MODELS.PROJECTS);
   }
 
   findOne(id: Types.ObjectId) {
-    return this.skills.findById(id).populate(MODELS.EXPERIENCES);
+    return this.skills.findById(id).populate(MODELS.EXPERIENCES).populate(MODELS.PROJECTS);
   }
 
   update(id: string, updateSkillInput: UpdateSkillInput) {
     const data = this.skills.findByIdAndUpdate(id, { ...updateSkillInput, updatedAt: new Date() });
-    return data.populate(MODELS.EXPERIENCES);
+    return data.populate(MODELS.EXPERIENCES).populate(MODELS.PROJECTS);
   }
 
   remove(id: number) {

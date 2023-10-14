@@ -34,6 +34,39 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type ProjectLink {
+  """Project link"""
+  link: String!
+
+  """Project link text"""
+  text: String!
+}
+
+type Project {
+  _id: String!
+
+  """Project name"""
+  name: String!
+
+  """Project description"""
+  description: String!
+
+  """Project image"""
+  image: String!
+
+  """Project links"""
+  links: [ProjectLink!]!
+
+  """Project skills"""
+  skills: [Skill!]!
+
+  """Project updated at"""
+  updatedAt: DateTime!
+
+  """Project created at"""
+  createdAt: DateTime!
+}
+
 type Skill {
   _id: String!
   name: String!
@@ -41,6 +74,7 @@ type Skill {
   updatedAt: DateTime!
   createdAt: DateTime!
   experiences: [Experience!]
+  projects: [Project!]
 }
 
 type Query {
@@ -48,6 +82,8 @@ type Query {
   skill(id: String!): Skill!
   experiences: [Experience!]!
   experience(id: String!): Experience!
+  projects: [Project!]!
+  project(id: Int!): Project!
 }
 
 type Mutation {
@@ -58,18 +94,23 @@ type Mutation {
   updateExperience(updateExperienceInput: UpdateExperienceInput!): Experience!
   removeExperience(id: Int!): Experience!
   addSkill(addSkillInput: AddSkillInput!): Experience!
+  createProject(createProjectInput: CreateProjectInput!): Project!
+  updateProject(updateProjectInput: UpdateProjectInput!): Project!
+  removeProject(id: Int!): Project!
 }
 
 input CreateSkillInput {
   name: String!
   fallbackIconUrl: String
   experiences: [String!]
+  projects: [String!]
 }
 
 input UpdateSkillInput {
   name: String
   fallbackIconUrl: String
   experiences: [String!]
+  projects: [String!]
   id: String!
 }
 
@@ -116,4 +157,43 @@ input AddSkillInput {
 
   """Skill ID"""
   skillId: String!
+}
+
+input CreateProjectInput {
+  """Project name"""
+  name: String!
+
+  """Project name"""
+  description: String!
+
+  """Project image"""
+  image: String!
+
+  """Project links"""
+  links: [ProjectLinkInput!]!
+  skills: [String!]
+}
+
+input ProjectLinkInput {
+  """Project link"""
+  link: String!
+
+  """Project link text"""
+  text: String!
+}
+
+input UpdateProjectInput {
+  """Project name"""
+  name: String
+
+  """Project name"""
+  description: String
+
+  """Project image"""
+  image: String
+
+  """Project links"""
+  links: [ProjectLinkInput!]
+  skills: [String!]
+  id: Int!
 }

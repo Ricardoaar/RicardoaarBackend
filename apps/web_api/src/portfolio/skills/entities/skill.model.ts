@@ -20,6 +20,13 @@ export class Skill implements ISkill {
     ref: MODELS.EXPERIENCES,
   })
   experiences: Types.ObjectId[];
+
+  @Prop({
+    required: false,
+    ref: MODELS.PROJECTS,
+  })
+  projects: Types.ObjectId[];
+
 }
 
 export const SkillSchema = SchemaFactory.createForClass(Skill);

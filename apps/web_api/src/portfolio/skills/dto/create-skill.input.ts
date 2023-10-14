@@ -12,4 +12,7 @@ export class CreateSkillInput implements ISkill {
 
   @Field(() => [String], { nullable: true })
   experiences: string[];
+
+  @Field(() => [String], { nullable: true })
+  projects: string[];
 }

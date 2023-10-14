@@ -18,7 +18,7 @@ export class ExperiencesService {
   async create(createExperienceInput: CreateExperienceInput) {
     const { skills, ...experienceInput } = createExperienceInput;
 
-
+  
     const experience = await this.experience.create({ ...experienceInput, createdAt: new Date() });
     if (skills) {
       await this.skills.updateMany({ _id: { $in: skills } }, { $addToSet: { experiences: experience._id } });

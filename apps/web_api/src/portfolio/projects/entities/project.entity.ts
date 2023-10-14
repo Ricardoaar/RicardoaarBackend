@@ -17,7 +17,7 @@ class ProjectLink implements IProjectLink {
 @ObjectType()
 export class Project implements IProject {
   @Field(() => String, { nullable: false })
-  _id: string;
+  _id: Types.ObjectId;
 
   @Field(() => String, { description: 'Project name' })
   name: string;

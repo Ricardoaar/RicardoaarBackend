@@ -77,6 +77,26 @@ type Skill {
   projects: [Project!]
 }
 
+type Media {
+  """Unique identifier in the database"""
+  _id: String!
+
+  """Name"""
+  name: String!
+
+  """Url"""
+  url: String!
+
+  """Svg"""
+  svg: String!
+
+  """Date of update"""
+  updatedAt: DateTime
+
+  """Date of creation"""
+  createdAt: DateTime
+}
+
 type Query {
   skills: [Skill!]!
   skill(id: String!): Skill!
@@ -84,6 +104,7 @@ type Query {
   experience(id: String!): Experience!
   projects: [Project!]!
   project(id: Int!): Project!
+  media(id: Int!): Media!
 }
 
 type Mutation {
@@ -97,6 +118,9 @@ type Mutation {
   createProject(createProjectInput: CreateProjectInput!): Project!
   updateProject(updateProjectInput: UpdateProjectInput!): Project!
   removeProject(id: Int!): Project!
+  createMedia(createMediaInput: CreateMediaInput!): Media!
+  updateMedia(updateMediaInput: UpdateMediaInput!): Media!
+  removeMedia(id: Int!): Media!
 }
 
 input CreateSkillInput {
@@ -195,5 +219,28 @@ input UpdateProjectInput {
   """Project links"""
   links: [ProjectLinkInput!]
   skills: [String!]
+  id: Int!
+}
+
+input CreateMediaInput {
+  """Name"""
+  name: String!
+
+  """Svg"""
+  svg: String!
+
+  """Url"""
+  url: String!
+}
+
+input UpdateMediaInput {
+  """Name"""
+  name: String
+
+  """Svg"""
+  svg: String
+
+  """Url"""
+  url: String
   id: Int!
 }

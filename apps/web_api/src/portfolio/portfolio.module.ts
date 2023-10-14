@@ -11,6 +11,9 @@ import { ExperiencesService } from '@/web_api/src/portfolio/experiences/experien
 import { ProjectSchema } from '@/web_api/src/portfolio/projects/entities/project.model';
 import { ProjectsService } from '@/web_api/src/portfolio/projects/projects.service';
 import { ProjectsResolver } from '@/web_api/src/portfolio/projects/projects.resolver';
+import { MediaSchema } from '@/web_api/src/portfolio/media/entities/media.model';
+import { MediaResolver } from '@/web_api/src/portfolio/media/media.resolver';
+import { MediaService } from '@/web_api/src/portfolio/media/media.service';
 
 @Module({
   imports: [MongoModule, MongooseModule.forFeature([{
@@ -23,11 +26,15 @@ import { ProjectsResolver } from '@/web_api/src/portfolio/projects/projects.reso
     {
       name: MODELS.PROJECTS,
       schema: ProjectSchema,
+    }, {
+      name: MODELS.MEDIA,
+      schema: MediaSchema,
     }])],
   providers: [
     SkillsResolver, SkillsService,
     ExperiencesResolver, ExperiencesService,
     ProjectsService, ProjectsResolver,
+    MediaResolver, MediaService,
   ],
 })
 export class PortfolioModule {

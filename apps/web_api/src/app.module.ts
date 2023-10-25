@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { PortfolioModule } from './portfolio/portfolio.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -12,7 +13,7 @@ import { PortfolioModule } from './portfolio/portfolio.module';
     autoSchemaFile: 'schema.gql',
     playground: false,
     plugins: [ApolloServerPluginLandingPageLocalDefault({})],
-  }), PortfolioModule],
+  }), PortfolioModule, AuthModule],
 })
 export class AppModule {
 }

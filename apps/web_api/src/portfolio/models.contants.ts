@@ -3,4 +3,5 @@ export const MODELS = {
   SKILLS: 'skills',
   PROJECTS: 'projects',
   MEDIA: 'media',
+  AUTH: 'auth',
 };

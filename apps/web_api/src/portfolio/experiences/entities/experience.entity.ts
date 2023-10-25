@@ -27,9 +27,9 @@ export class Experience implements IExperience {
 
   @Field(() => Date, {
     description: 'Date of creation',
-    nullable: false,
+    nullable: true,
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @Field(() => Date, {
     description: 'Date of update',

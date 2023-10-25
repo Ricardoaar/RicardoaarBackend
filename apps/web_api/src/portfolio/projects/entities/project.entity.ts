@@ -34,6 +34,6 @@ export class Project implements IProject {
 
   @Field(() => Date, { description: 'Project updated at' })
   updatedAt: Date;
-  @Field(() => Date, { description: 'Project created at' })
+  @Field(() => Date, { description: 'Project created at', nullable: true })
   createdAt: Date;
 }

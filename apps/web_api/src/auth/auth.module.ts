@@ -7,14 +7,35 @@ import { MODELS } from '@/web_api/src/portfolio/models.contants';
 import { AuthSchema } from '@/web_api/src/auth/entities/auth.model';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from '@/web_api/src/auth/strategies/local.strategy';
+import { JwtStrategy } from '@/web_api/src/auth/strategies/jwt.strategy';
+import authConfig from '@app/config/configs/auth.config';
+import { ConfigModule } from '@app/config';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { ConfigType } from '@nestjs/config';
 
 @Module({
-  imports: [MongoModule, MongooseModule.forFeature([{
-    name: MODELS.AUTH,
-    schema: AuthSchema,
-  }]), PassportModule.register({ defaultStrategy: 'local' })],
+  imports: [
+    ConfigModule,
+    MongoModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [authConfig.KEY],
+      useFactory: async (jwtConfig: ConfigType<typeof authConfig>) => {
+        return ({
+          secret: jwtConfig.JWT_SECRET,
+          signOptions: {
+            expiresIn: +jwtConfig.JWT_EXPIRES_IN_SECONDS * 1000,
+          },
+        });
+      },
+
+    }),
+    MongooseModule.forFeature([{
+      name: MODELS.AUTH,
+      schema: AuthSchema,
+    }]), PassportModule.register({ defaultStrategy: 'local' })],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, JwtService],
 })
 export class AuthModule {
 }

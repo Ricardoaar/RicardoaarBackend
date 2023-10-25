@@ -11,7 +11,8 @@ export class AuthController {
   @UseGuards(LocalGuard)
   @Post('login')
   async login(@Request() req: Request & { user: any }) {
-    return req.user;
+
+    return this.authService.signJwt(req.user);
   }
 
   @Post('register')

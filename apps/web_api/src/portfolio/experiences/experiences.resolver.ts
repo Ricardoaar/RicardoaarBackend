@@ -6,6 +6,8 @@ import { UpdateExperienceInput } from './dto/update-experience.input';
 import { Types } from 'mongoose';
 import { Skill } from '@/web_api/src/portfolio/skills/entities/skill.model';
 import { AddSkillInput } from '@/web_api/src/portfolio/experiences/dto/add-skill.input';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '@/web_api/src/auth/guards/GqlAuthGuard';
 
 
 @Resolver(() => Experience)
@@ -19,6 +21,7 @@ export class ExperiencesResolver {
     return this.experiencesService.create(createExperienceInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => [Experience], { name: 'experiences' })
   findAll() {
     return this.experiencesService.findAll();

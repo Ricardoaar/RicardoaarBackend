@@ -145,15 +145,15 @@ input CreateExperienceInput {
   """Description of the experience"""
   description: String!
 
+  """Title of the experience"""
+  title: String!
+  skills: [String!]
+
   """Date of end"""
   endDate: DateTime!
 
   """Date of start"""
   startDate: DateTime!
-
-  """Title of the experience"""
-  title: String!
-  skills: [String!]
 }
 
 input UpdateExperienceInput {
@@ -163,15 +163,15 @@ input UpdateExperienceInput {
   """Description of the experience"""
   description: String
 
+  """Title of the experience"""
+  title: String
+  skills: [String!]
+
   """Date of end"""
   endDate: DateTime
 
   """Date of start"""
   startDate: DateTime
-
-  """Title of the experience"""
-  title: String
-  skills: [String!]
   _id: String!
 }
 

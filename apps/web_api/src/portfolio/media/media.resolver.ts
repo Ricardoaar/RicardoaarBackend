@@ -4,12 +4,15 @@ import { Media } from './entities/media.entity';
 import { CreateMediaInput } from './dto/create-media.input';
 import { UpdateMediaInput } from './dto/update-media.input';
 import { Types } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
+import { GqlJwtAuthGuard } from '@/web_api/src/auth/guards/gql-jwt-auth-guard.service';
 
 @Resolver(() => Media)
 export class MediaResolver {
   constructor(private readonly mediaService: MediaService) {
   }
 
+  @UseGuards(GqlJwtAuthGuard)
   @Mutation(() => Media)
   createMedia(@Args('createMediaInput') createMediaInput: CreateMediaInput) {
     return this.mediaService.create(createMediaInput);
@@ -25,11 +28,14 @@ export class MediaResolver {
     return this.mediaService.findOne(id);
   }
 
+
+  @UseGuards(GqlJwtAuthGuard)
   @Mutation(() => Media)
   updateMedia(@Args('updateMediaInput') updateMediaInput: UpdateMediaInput) {
     return this.mediaService.update(updateMediaInput.id, updateMediaInput);
   }
 
+  @UseGuards(GqlJwtAuthGuard)
   @Mutation(() => Media)
   removeMedia(@Args('id', { type: () => Int }) id: Types.ObjectId) {
     return this.mediaService.remove(id);
